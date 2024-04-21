@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineRetailShop.API\OnlineRetailShop.API.csproj" />
+    <ProjectReference Include="..\OnlineRetailShop.Repository\OnlineRetailShop.Repository.csproj" />
     <ProjectReference Include="..\OnlineRetailShop.Services\OnlineRetailShop.Services.csproj" />
   </ItemGroup>
 

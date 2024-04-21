@@ -14,9 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //adding the ApplicationDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopCS")),
-        ServiceLifetime.Scoped,
-        ServiceLifetime.Scoped);
+options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopCS")));
 
 
 // Add services to the container.
@@ -42,10 +40,11 @@ builder.Services.AddSwaggerGen();
 
 
 #region adding services
-//builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddDbContext<ApplicationDbContext>();
 
 //builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 //builder.Services.AddScoped<ICustomerService, OnlineRetailShop.Services.SImplementations.CustomerService>();
+
 
 // Register repositories
 //builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -55,10 +54,10 @@ builder.Services.AddSwaggerGen();
 
 
 
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+//builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
-// Register services
-builder.Services.AddScoped<IOrderService, OrderService>();
+//// Register services
+//builder.Services.AddScoped<IOrderService, OrderService>();
 #endregion
 
 var app = builder.Build();
