@@ -30,6 +30,7 @@ namespace OnlineRetailShop.Services.SImplementations
 
         public async Task AddCustomerAsync(Customer customer)
         {
+            customer.CustomerId = Guid.NewGuid();
             await _customerRepository.AddAsync(customer);
         }
 

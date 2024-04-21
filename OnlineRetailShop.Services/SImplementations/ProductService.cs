@@ -20,6 +20,7 @@ namespace OnlineRetailShop.Services.SImplementations
 
         public void AddProduct(Product product)
         {
+            product.ProductId = Guid.NewGuid();
             _productRepository.Add(product);
         }
 

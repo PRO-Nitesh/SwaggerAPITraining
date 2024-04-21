@@ -11,7 +11,8 @@ namespace OnlineRetailShop.Repository.Interface
     {
         Order GetById(Guid orderId);
         IEnumerable<Order> GetAll();
-        void Add(Order order);
+        //void Add(Order order);
+        Task Add(Order order);
         void Update(Order order);
         void Delete(Guid orderId);
     }

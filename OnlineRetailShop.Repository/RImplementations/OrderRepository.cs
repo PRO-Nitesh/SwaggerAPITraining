@@ -18,11 +18,25 @@ namespace OnlineRetailShop.Repository.RImplementations
             _context = context;
         }
 
-        public void Add(Order order)
+        //public void Add(Order order)
+        //{
+        //    _context.Orders.Add(order);
+        //    var gotorder = _context.Products.FindAsync(order.ProductId);
+        //    gotorder.Quantity -= order.Quantity;
+        //    _context.SaveChanges();
+        //}
+        public async Task Add(Order order)
         {
             _context.Orders.Add(order);
-            _context.SaveChanges();
+            var product = await _context.Products.FindAsync(order.ProductId);
+            if (product != null)
+            {
+                product.Quantity -= order.Quantity;
+                _context.Entry(product).State = EntityState.Modified;
+                await _context.SaveChangesAsync(); // Save changes to the database
+            }
         }
+
 
         public void Delete(Guid orderId)
         {

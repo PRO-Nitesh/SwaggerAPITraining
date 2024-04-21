@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OnlineRetailShop.Repository.RImplementations
 {
-    internal class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ApplicationDbContext _context;
 
