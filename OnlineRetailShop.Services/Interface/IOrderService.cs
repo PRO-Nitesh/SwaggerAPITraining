@@ -11,7 +11,7 @@ namespace OnlineRetailShop.Services.Interface
     {
         Order GetOrderById(Guid orderId);
         IEnumerable<Order> GetAllOrders();
-        void AddOrder(Order order);
+        Task<Order> AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(Guid orderId);
     }

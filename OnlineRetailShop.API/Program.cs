@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Builder;
+using OnlineRetailShop.API.AuthorizationMiddleware;
 
 
 
@@ -95,6 +97,10 @@ builder.Services.AddScoped<IProductService, OnlineRetailShop.Services.SImplement
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
+builder.Services.AddTransient<AuthorizationMiddleware>();
+
 #endregion
 
 
@@ -117,7 +123,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
-app.UseAuthorization(); 
+app.UseAuthorization();
+
+//app.UseAuthMiddleware();
 
 app.MapControllers();
 

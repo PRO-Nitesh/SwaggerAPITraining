@@ -22,20 +22,34 @@ namespace OnlineRetailShop.Repository.RImplementations
         //{
         //    _context.Orders.Add(order);
         //    var gotorder = _context.Products.FindAsync(order.ProductId);
-        //    gotorder.Quantity -= order.Quantity;
+        //    gotorder.Result.Quantity -= order.Quantity;
         //    _context.SaveChanges();
         //}
-        public async Task Add(Order order)
-        {
-            _context.Orders.Add(order);
-            var product = await _context.Products.FindAsync(order.ProductId);
-            if (product != null)
-            {
-                product.Quantity -= order.Quantity;
-                _context.Entry(product).State = EntityState.Modified;
-                await _context.SaveChangesAsync(); // Save changes to the database
-            }
-        }
+        //public async Task<Order> Add(Order order)
+        //{
+        //     _context.Orders.Add(order);
+        //    var product = await _context.Products.FindAsync(order.ProductId);
+        //    //if (product != null)
+        //    //{
+        //    //    product.Quantity -= order.Quantity;
+        //    //    //_context.Entry(product).State = EntityState.Modified;
+        //    //     await _context.SaveChangesAsync();
+
+        //    //}
+        //    if (product.Quantity >= order.Quantity)
+        //    {
+        //        product.Quantity -= order.Quantity;
+        //        _context.Entry(product).State = EntityState.Modified;
+        //    }
+        //    else
+        //    {
+        //        // Handle insufficient product quantity (throw exception, log error, etc.)
+        //    }
+
+        //    return order;
+        //}
+
+
 
 
         public void Delete(Guid orderId)
@@ -62,6 +76,16 @@ namespace OnlineRetailShop.Repository.RImplementations
         {
             _context.Entry(order).State = EntityState.Modified;
             _context.SaveChanges();
+        }
+
+        public async Task<Order> Add(Order order)
+        {
+            //throw new NotImplementedException();
+            _context.Orders.Add(order);
+            var gotorder = _context.Products.FindAsync(order.ProductId);
+            gotorder.Result.Quantity -= order.Quantity;
+            await _context.SaveChangesAsync();
+            return order;
         }
     }
 }

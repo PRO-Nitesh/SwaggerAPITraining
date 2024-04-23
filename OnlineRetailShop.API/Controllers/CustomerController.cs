@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailShop.Services.Interface;
 using OnlineRetailShop.Repository.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineRetailShop.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -26,6 +28,8 @@ namespace OnlineRetailShop.API.Controllers
             }
             return Ok(customer);
         }
+
+        
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetAllCustomers()

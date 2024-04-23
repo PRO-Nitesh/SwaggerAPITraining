@@ -26,10 +26,11 @@ namespace OnlineRetailShop.Services.SImplementations
         //    _orderRepository.Add(order);
         //}
 
-        public async Task AddOrder(Order order)
+        public async Task<Order> AddOrder(Order order)
         {
             order.OrderId = Guid.NewGuid();
-            await _orderRepository.Add(order);
+            var order1 = await _orderRepository.Add(order);
+            return order1; 
         }
 
 
@@ -53,9 +54,9 @@ namespace OnlineRetailShop.Services.SImplementations
             _orderRepository.Update(order);
         }
 
-        void IOrderService.AddOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        //void IOrderService.AddOrder(Order order)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

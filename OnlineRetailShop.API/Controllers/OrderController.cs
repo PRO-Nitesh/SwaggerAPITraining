@@ -51,12 +51,12 @@ namespace OnlineRetailShop.API.Controllers
 
         // POST: api/Order
         [HttpPost]
-        public IActionResult AddOrder([FromBody] Order order)
+        public async Task<IActionResult> AddOrder([FromBody] Order order)
         {
             try
             {
-                _orderService.AddOrder(order);
-                return CreatedAtAction(nameof(GetOrderById), new { id = order.OrderId }, order);
+                var orders=await _orderService.AddOrder(order);
+                return CreatedAtAction(nameof(GetOrderById), new { id = orders.OrderId }, orders);
             }
             catch (Exception ex)
             {
